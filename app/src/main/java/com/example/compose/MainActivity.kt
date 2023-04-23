@@ -3,6 +3,7 @@ package com.example.compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.compose.ui.theme.ComposeTheme
+import com.example.compose.ui.theme.Typography
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +25,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Greeting("Android")
+                  CustomText(text = "Ankit")
                 }
             }
         }
@@ -37,10 +40,22 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
+@Composable
+fun CustomText(text: String) {
+    Text(
+        text = text,
+        style =Typography.bodyMedium,
+    )
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     ComposeTheme {
-        Greeting("Android")
+        Column {
+            Greeting("Android")
+            CustomText(text = "Ankit")
+        }
     }
 }

@@ -1,6 +1,4 @@
 
-f
-6app/src/main/java/com/example/compose/ui/theme/Type.kt,2\1\2138bd444b37d9039e72c0068a312206f40014b5
 g
 7app/src/main/java/com/example/compose/ui/theme/Color.kt,e\b\eb283491b5ba4f6858974d1d6c29cc3adbb2d02c
 g

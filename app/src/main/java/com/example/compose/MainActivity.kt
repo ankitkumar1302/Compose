@@ -5,14 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.compose.ui.theme.ComposeTheme
-import com.example.compose.ui.theme.Typography
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,28 +25,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
-                  CustomText(text = "Ankit")
+
                 }
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Composable
-fun CustomText(text: String) {
-    Text(
-        text = text,
-        style =Typography.bodyMedium,
-    )
 }
 
 
@@ -53,9 +37,24 @@ fun CustomText(text: String) {
 @Composable
 fun GreetingPreview() {
     ComposeTheme {
-        Column {
-            Greeting("Android")
-            CustomText(text = "Ankit")
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Surface(
+                modifier = Modifier
+                    .width(200.dp)
+                    .weight(3f),
+                color = MaterialTheme.colorScheme.secondary
+            ) {}
+            Surface(
+                modifier = Modifier
+                    .width(200.dp)
+                    .weight(1f),
+                color = MaterialTheme.colorScheme.primary
+            ) {}
         }
+
     }
 }

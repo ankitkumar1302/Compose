@@ -7,6 +7,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -62,7 +64,6 @@ fun ColumnScope.CustomItem(weight: Float, color: Color = MaterialTheme.colorSche
         color = color
     ) {}
 }
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -77,10 +78,37 @@ fun GreetingPreview() {
             CustomItem(weight = 1f)
             // Default value has been assigned... in the CustomItem
         }
-
         // This For Row...
         // Now it was added by git to a new branch Known as Row.
-
-
     }
+}
+@Composable
+fun RowScope.CustomItem1(weight: Float, color: Color = MaterialTheme.colorScheme.secondary) {
+    // To use the weight function we need to call a extension function (RowScope).
+    Surface(
+        // Give the width and height to show the Row
+        modifier = Modifier
+            .width(20.dp)
+            .height(20.dp)
+            .weight(weight),
+        color = color
+    ) {}
+}
+@Preview(showBackground = true)
+@Composable
+fun Row() {
+    ComposeTheme {
+         Row(
+            // Used for Horizontal arrangement
+            modifier = Modifier.height(250.dp)
+                .width(250.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+         , verticalAlignment = Alignment.CenterVertically
+        ) {
+            CustomItem1(weight = 3f, MaterialTheme.colorScheme.primary)
+            CustomItem1(weight = 1f)
+            // Default value has been assigned... in the CustomItem
+        }
+    }
+
 }

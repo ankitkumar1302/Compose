@@ -99,8 +99,6 @@ fun CustomText2() {
 fun CustomText(){
     Text(text = "Hey Ankit!".repeat(20), maxLines = 2, overflow = TextOverflow.Visible)
 }
-
-
 /*
 // Created a customItem function
 @Composable

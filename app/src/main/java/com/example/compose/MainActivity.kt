@@ -4,22 +4,28 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.ParagraphStyle
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.compose.ui.theme.ComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,28 +35,73 @@ class MainActivity : ComponentActivity() {
             ComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    Column(
-                        // Used for vertical arrangement
-                        modifier = Modifier
-                            .height(500.dp)
-                            .width(500.dp)
-                            .background(Color.LightGray),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        CustomItem(weight = 3f, MaterialTheme.colorScheme.primary)
-                        CustomItem(weight = 1f)
-                        // Default value has been assigned... in the CustomItem
-                    }
+//                    TextCustomization()
+                    CustomText2()
                 }
             }
         }
     }
 }
 
+
+@Composable
+fun TextCustomization() {
+    ComposeTheme() {
+        Column(modifier = Modifier.fillMaxSize()) {
+            Text(
+                // use of string resource to call the string name in our project we cant directly call the string
+                text = stringResource(id = R.string.app_name),
+                modifier = Modifier
+                    // If we write .background() up the padding it will color the whole area of the text acquire.
+                    .background(MaterialTheme.colorScheme.primary)
+                    .padding(16.dp)
+                    .width(200.dp),
+                color = Color.White,
+                fontSize = 22.sp,
+                fontStyle = FontStyle.Italic,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+                // If we write .background() bellow the padding it it will color the text area only.
+                // Form top to bottom it will execute.
+            )
+        }
+    }
+}
+
+@Composable
+fun CustomText2() {
+    Column (modifier = Modifier.fillMaxSize()){
+        Text(
+            buildAnnotatedString {
+                withStyle(style = ParagraphStyle(textAlign = TextAlign.Center)) {
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.Magenta,
+                            fontSize = 30.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    ) {
+                        append("A")
+                    }
+                    append("B")
+                    append("C")
+                    append("D")
+                }
+            }, modifier = Modifier.width(200.dp)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CustomText(){
+    Text(text = "Hey Ankit!".repeat(20), maxLines = 2, overflow = TextOverflow.Visible)
+}
+
+
+/*
 // Created a customItem function
 @Composable
 fun ColumnScope.CustomItem(weight: Float, color: Color = MaterialTheme.colorScheme.secondary) {
@@ -67,6 +118,7 @@ fun ColumnScope.CustomItem(weight: Float, color: Color = MaterialTheme.colorSche
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
+
     ComposeTheme {
         Column(
             // Used for vertical arrangement
@@ -74,6 +126,7 @@ fun GreetingPreview() {
             horizontalAlignment = Alignment.CenterHorizontally,
 //            verticalArrangement = Arrangement.Center
         ) {
+
             CustomItem(weight = 3f, MaterialTheme.colorScheme.primary)
             CustomItem(weight = 1f)
             // Default value has been assigned... in the CustomItem
@@ -100,7 +153,8 @@ fun Row() {
     ComposeTheme {
          Row(
             // Used for Horizontal arrangement
-            modifier = Modifier.height(250.dp)
+            modifier = Modifier
+                .height(250.dp)
                 .width(250.dp),
             horizontalArrangement = Arrangement.SpaceBetween
          , verticalAlignment = Alignment.CenterVertically
@@ -110,5 +164,4 @@ fun Row() {
             // Default value has been assigned... in the CustomItem
         }
     }
-
-}
+*/

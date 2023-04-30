@@ -22,10 +22,10 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose.ui.theme.ComposeTheme
@@ -39,14 +39,13 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-//                    TextCustomization()
-                    CustomText1()
+                    SuperscriptSpanText(normalText = "Hello", superText = "Hello World")
+
                 }
             }
         }
     }
 }
-
 
 @Composable
 fun TextCustomization() {
@@ -69,7 +68,7 @@ fun TextCustomization() {
                 // Form top to bottom it will execute.
             )
         }
-    }
+    } // Here the text writen and how to customize it.
 }
 
 @Composable
@@ -93,14 +92,13 @@ fun CustomText2() {
                 }
             }, modifier = Modifier.width(200.dp)
         )
-    }
+    } // Here it have Customize the letter/Alphabet/Text.
 }
 
-@Preview(showBackground = true)
 @Composable
 fun CustomText() {
     Text(text = "Hey Ankit!".repeat(20), maxLines = 2, overflow = TextOverflow.Visible)
-}
+} // Here it has repeat lines function.
 
 /*
 // Created a customItem function
@@ -166,7 +164,6 @@ fun Row() {
         }
     }
 */
-@Preview(showBackground = true)
 @Composable
 fun CustomText1() {
     SelectionContainer() {
@@ -178,4 +175,29 @@ fun CustomText1() {
             Text(text = "Hello, World!")
         }
     }
+} // It has Selection and deselection of words.
+@Composable
+fun SuperscriptSpanText(
+    normalText: String,
+    superText: String
+) {
+    Text(buildAnnotatedString {
+        withStyle(
+            style = SpanStyle(
+                fontSize = MaterialTheme.typography.bodyMedium.fontSize
+            )
+        ) {
+            append(normalText)
+        }
+        withStyle(
+            style = SpanStyle(
+                fontSize = MaterialTheme.typography.bodyMedium.fontSize,
+                fontWeight = FontWeight.Normal,
+                baselineShift = BaselineShift.Subscript
+            )
+        ) {
+            append(superText)
+        }
+    })
+
 }

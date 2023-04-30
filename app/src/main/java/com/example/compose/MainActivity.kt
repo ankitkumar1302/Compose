@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.selection.DisableSelection
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -38,7 +40,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
 //                    TextCustomization()
-                    CustomText2()
+                    CustomText1()
                 }
             }
         }
@@ -72,7 +74,7 @@ fun TextCustomization() {
 
 @Composable
 fun CustomText2() {
-    Column (modifier = Modifier.fillMaxSize()){
+    Column(modifier = Modifier.fillMaxSize()) {
         Text(
             buildAnnotatedString {
                 withStyle(style = ParagraphStyle(textAlign = TextAlign.Center)) {
@@ -96,9 +98,10 @@ fun CustomText2() {
 
 @Preview(showBackground = true)
 @Composable
-fun CustomText(){
+fun CustomText() {
     Text(text = "Hey Ankit!".repeat(20), maxLines = 2, overflow = TextOverflow.Visible)
 }
+
 /*
 // Created a customItem function
 @Composable
@@ -163,3 +166,16 @@ fun Row() {
         }
     }
 */
+@Preview(showBackground = true)
+@Composable
+fun CustomText1() {
+    SelectionContainer() {
+        Column {
+            Text(text = "Hello, World!", modifier = Modifier.padding(10.dp))
+            DisableSelection {
+                Text(text = "Hello, World!")
+            }
+            Text(text = "Hello, World!")
+        }
+    }
+}

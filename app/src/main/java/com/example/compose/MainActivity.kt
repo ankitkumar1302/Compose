@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose.ui.theme.ComposeTheme
@@ -176,28 +177,42 @@ fun CustomText1() {
         }
     }
 } // It has Selection and deselection of words.
+
 @Composable
 fun SuperscriptSpanText(
     normalText: String,
-    superText: String
+    normalFontSize: TextUnit = MaterialTheme.typography.bodyLarge.fontSize,
+    superText: String,
+    superTextFontSize: TextUnit = MaterialTheme.typography.bodySmall.fontSize,
+    superTextFontWeight: FontWeight = FontWeight.Normal
 ) {
     Text(buildAnnotatedString {
         withStyle(
             style = SpanStyle(
-                fontSize = MaterialTheme.typography.bodyMedium.fontSize
+                fontSize = normalFontSize
             )
         ) {
             append(normalText)
         }
         withStyle(
             style = SpanStyle(
-                fontSize = MaterialTheme.typography.bodyMedium.fontSize,
-                fontWeight = FontWeight.Normal,
+                fontSize = superTextFontSize,
+                fontWeight = superTextFontWeight,
                 baselineShift = BaselineShift.Subscript
             )
         ) {
             append(superText)
         }
     })
-
+}
+@Composable
+fun great() {
+    ComposeTheme {
+        Column(modifier = Modifier.fillMaxSize()) {
+            SuperscriptSpanText(
+                normalText = "Hello", superText = "World",
+                superTextFontWeight = FontWeight.Bold
+            )
+        }
+    }
 }
